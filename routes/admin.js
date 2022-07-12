@@ -15,8 +15,9 @@ router.post('/', (req,res)=>{
   adminHelpers.loginCheck(req.body).then((response)=>{
     if (response.status) {
       //req.session.admin.loggedIn = true
-      req.session.admin = response.admin
-      res.render('admin/admin-index',{admin:true});
+      adminData = response.admin
+      //console.log(adminData)
+      res.render('admin/admin-index',{admin:true, adminData});
       
 
     } else {
@@ -24,6 +25,40 @@ router.post('/', (req,res)=>{
       res.redirect('/admin')
     }
   })
+});
+
+router.get('/admin-index',(req,res)=>{
+  
+    res.render('admin/admin-index',{admin:true, adminData})
+    
+})
+
+router.get('/exams',async(req,res)=>{
+  await adminHelpers.getExamDetails().then((exams)=>{
+    //console.log(exams)
+    res.render('admin/exams',{admin:true,exams, adminData})
+  })
+  
+})
+
+router.get('/add-exam',(req,res)=>{
+  
+    res.render('admin/add-exam',{admin:true, adminData})
+    
+})
+
+router.post('/add-exam',async(req,res)=>{
+  await adminHelpers.addExam(req.body).then((response)=>{
+    if(response.status){
+    //alert("Exam added successfully")
+    res.redirect('/admin/exams')
+    }
+  })  
+})
+
+router.get('/logout',(req,res)=>{
+  req.session.destroy()
+  res.redirect('/admin')
 })
 
 module.exports = router;

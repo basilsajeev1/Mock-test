@@ -11,7 +11,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let loginStatus = false
             let response = {}
-            console.log("reached adminhelperlogincheck",data)
+            //console.log("reached adminhelperlogincheck",data)
 
             let admin = await db.get().collection('admin').findOne({ "email": data.email ,  "password": data.password })
             if (admin) {
@@ -25,5 +25,20 @@ module.exports = {
                 resolve({ status: false })
             }
         })
+    },
+    getExamDetails:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let exams= await db.get().collection('exams').find().toArray()
+            resolve(exams)
+        })
+    },
+    addExam:(examData)=>{
+        return new Promise(async(resolve,reject)=>{
+            //console.log(examData)
+            await db.get().collection('exams').insertOne(examData).then(()=>{
+                resolve({status:true})
+        })
+        })
+
     }
 }

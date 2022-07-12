@@ -1,0 +1,29 @@
+<div class="container">
+    <a href="/admin/add-exam">
+        <button class="btn btn-primary" type="button">Add Exam</button>
+    </a>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Exam Name</th>
+      <th scope="col">Number of Questions</th>
+      <th scope="col">Time</th>
+      <th scope="col">Options</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each exams}}
+    <tr>      
+      <td>{{this.name}}</td>
+      <td>{{this.numberofquestions}}</td>
+      <td>{{this.time}}</td>
+      <td><button class="btn btn-link" onclick="viewQuestions('{{this._id}}')">View Questions</button><button class="btn btn-danger" onclick="deleteExam('{{this._id}}')">Delete Exam</button></td>
+      
+
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+</div>
