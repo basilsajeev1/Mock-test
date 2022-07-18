@@ -1,0 +1,36 @@
+<div class="container">
+<button class="btn btn-success" onclick="addMcqPage('{{examId}}')">Add Question</button>
+ {{#if mcqstatus}}
+  <p class="alert alert-success">{{mcqstatus}}</p>
+  {{/if}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Question</th>
+      <th scope="col">Answer</th>
+      <th scope="col">Option 1</th>
+      <th scope="col">Option 2</th>
+      <th scope="col">Option 3</th>
+      <th scope="col">Options</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each mcqs}}
+    <tr>      
+      <td>{{this.question}}</td>
+      <td>{{this.answer}}</td>
+      <td>{{this.option1}}</td>
+      <td>{{this.option2}}</td>
+      <td>{{this.option3}}</td>
+      <td><button class="btn btn-link" onclick="">Edit Question</button>
+      <button class="btn btn-danger" onclick="">Delete question</button>
+      </td>
+      
+
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+</div>

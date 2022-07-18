@@ -1,0 +1,58 @@
+<div class="container">
+    <form action="/admin/add-mcq" method="post">
+        <table>
+            <tr>
+                <td>
+                    <input type="hidden" value="{{examId}}" name="examId">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Question</label>
+                </td>
+                <td>
+                    <input type="text" name="question"><br>
+                </td>
+            <tr>
+                <td>
+                <label>Answer</label>
+                </td>
+                <td>
+                <input type="text" name="answer">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                <label>Option 1</label>
+                </td>
+                <td>
+                <input type="text" name="option1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label>Option 2</label>
+                </td>
+                <td>
+                <input type="text" name="option2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label>Option 3</label>
+                </td>
+                <td>
+                <input type="text" name="option3">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                
+                </td>
+                <td>
+                <button class="btn btn-success" type="submit">Add Question</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
