@@ -41,6 +41,13 @@ module.exports = {
         })
 
     },
+    deleteExam:(examId)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('exams').deleteOne({'_id':ObjectId(examId)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
     getExamName:(examId)=>{
         return new Promise(async(resolve,reject)=>{
             let exam= await db.get().collection('exams').findOne({'_id':ObjectId(examId)})
@@ -64,5 +71,33 @@ module.exports = {
             resolve(mcqs)
         })
 
+    },
+    getMcqDetails:(qId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let mcqData= await db.get().collection('mcqs').findOne({'_id':ObjectId(qId)})
+            resolve(mcqData)
+        })
+    },
+    updateMcq:(mcqDetails)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('mcqs').updateOne({'_id':ObjectId(mcqDetails.id)},
+                {$set:{
+                    question:mcqDetails.question,
+                    answer: mcqDetails.answer,
+                    option1: mcqDetails.option1,
+                    option2: mcqDetails.option2,
+                    option3: mcqDetails.option3,
+                }}
+            ).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    deleteMcq:(qId)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('mcqs').deleteOne({'_id':ObjectId(qId)}).then((response)=>{
+                resolve(response)
+            })
+        })
     }
 }

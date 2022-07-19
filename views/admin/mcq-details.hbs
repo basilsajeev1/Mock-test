@@ -1,24 +1,27 @@
 <div class="container">
-    <form action="/admin/add-mcq" method="post">
+    <form action="/admin/edit-mcq" method="post">
         <table>
-            <tr>
+           <tr>
                 <td>
-                    <input type="hidden" value="{{examId}}" name="examId">
+                    <input type="hidden" name="id" value="{{mcqData._id}}"><br>
                 </td>
-            </tr>
+                 <td>
+                    <input type="hidden" name="examId" value="{{mcqData.examId}}"><br>
+                </td>
+            <tr>
             <tr>
                 <td>
                     <label>Question</label>
                 </td>
                 <td>
-                    <input type="text" name="question" style="width:500px ; height: 100px;"><br>
+                    <input type="text" name="question" value="{{mcqData.question}}" style="width:500px ;height: 100px;"><br>
                 </td>
             <tr>
                 <td>
                 <label>Answer</label>
                 </td>
                 <td>
-                <input type="text" name="answer">
+                <input type="text" name="answer" value="{{mcqData.answer}}">
                 </td>
             </tr>
              <tr>
@@ -26,7 +29,7 @@
                 <label>Option 1</label>
                 </td>
                 <td>
-                <input type="text" name="option1">
+                <input type="text" name="option1" value="{{mcqData.option1}}">
                 </td>
             </tr>
             <tr>
@@ -34,7 +37,7 @@
                 <label>Option 2</label>
                 </td>
                 <td>
-                <input type="text" name="option2">
+                <input type="text" name="option2" value="{{mcqData.option2}}">
                 </td>
             </tr>
             <tr>
@@ -42,7 +45,7 @@
                 <label>Option 3</label>
                 </td>
                 <td>
-                <input type="text" name="option3">
+                <input type="text" name="option3" value="{{mcqData.option3}}">
                 </td>
             </tr>
             <tr>
@@ -50,7 +53,7 @@
                 
                 </td>
                 <td>
-                <button class="btn btn-success" type="submit">Add Question</button>
+                <button class="btn btn-success" type="submit">Update</button>
                 </td>
             </tr>
         </table>

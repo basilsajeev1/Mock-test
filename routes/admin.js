@@ -66,6 +66,12 @@ router.get('/view-questions/:examId',async(req,res)=>{
 })   
 })
 
+router.get('/delete-exam/:examId',async(req,res)=>{
+   await adminHelpers.deleteExam(req.params.examId).then((response)=>{
+      res.json({status:true})
+   })
+})
+
 router.get('/mcqs/:examId',async(req,res)=>{
   examId=req.params.examId
   await adminHelpers.getMcqs(examId).then((mcqs)=>{
@@ -90,6 +96,25 @@ router.post('/add-mcq',async(req,res)=>{
       res.redirect('/admin/mcqs/'+examId)
       
     })
+})
+
+router.get('/edit-mcq:qId',async(req,res)=>{
+  await adminHelpers.getMcqDetails(req.params.qId).then((mcqData)=>{
+     res.render('admin/mcq-details',{mcqData, admin:true, adminData}) 
+  })
+})
+
+router.post('/edit-mcq',async(req,res)=>{
+  await adminHelpers.updateMcq(req.body).then((response)=>{
+    req.session.mcqstatus="MCQ updated successfully"
+    res.redirect('/admin/mcqs/'+req.body.examId)
+  })
+})
+
+router.get('/delete-mcq:qId',async(req,res)=>{
+  await adminHelpers.deleteMcq(req.params.qId).then((response)=>{
+    res.json({status:true})
+  })
 })
 
 router.get('/logout',(req,res)=>{
