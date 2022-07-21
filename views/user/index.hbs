@@ -1,2 +1,43 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-6 mt-5">
+            <div>
+                <h1>Exams Available</h1>
+            </div>
+            <div>
+                <ul>
+                    {{#each exams}}
+
+                    <li>
+                        <h2>{{this.name}}</h2>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="col col-12 col-md-6">
+            <form class="mt-5 ml-5 p-5" style="width: 50% ;" action="/" method="post">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="form2Example1" class="form-control" name="email" style="width:300px ;" />
+                    <label class="form-label" for="form2Example1">Email address</label>
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="form2Example2" class="form-control" name="password" style="width:300px ;" />
+                    <label class="form-label" for="form2Example2">Password</label>
+                </div>
+
+                {{#if loginErr}}
+                <p class="alert alert-danger">{{loginErr}}</p>
+                {{/if}}
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" style="width:300px" ;>Sign in</button>
+                <a href="/register">Register</a>
+
+            </form>
+        </div>
+    </div>
+</div>

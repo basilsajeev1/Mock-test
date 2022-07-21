@@ -99,5 +99,57 @@ module.exports = {
                 resolve(response)
             })
         })
-    }
+    },
+    addEssay:(essayDetails)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('essays').insertOne(essayDetails).then(async(response)=>{
+                questionId=response.insertedId
+                let question= await db.get().collection('essays').findOne({'_id':ObjectId(questionId)})
+                //console.log(question.examId)
+                resolve(question.examId)
+            })
+        })
+    },
+    getEssays:(exam)=>{
+        return new Promise(async(resolve,reject)=>{
+            essays=await db.get().collection('essays').find({'examId':exam}).toArray()
+            //console.log(mcqs)
+            resolve(essays)
+        })
+
+    },
+    getEssayDetails:(qId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let essayData= await db.get().collection('essays').findOne({'_id':ObjectId(qId)})
+            resolve(essayData)
+        })
+    },
+    updateEssay:(essayDetails)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('essays').updateOne({'_id':ObjectId(essayDetails.id)},
+                {$set:{
+                    question:essayDetails.question,
+                    keyword1:essayDetails.keyword1,
+                    keyword2:essayDetails.keyword2,
+                    keyword3:essayDetails.keyword3,
+                    keyword4:essayDetails.keyword4,
+                    keyword5:essayDetails.keyword5,
+                    keyword6:essayDetails.keyword6,
+                    keyword7:essayDetails.keyword7,
+                    keyword8:essayDetails.keyword8,
+                    keyword9:essayDetails.keyword9,
+                    keyword10:essayDetails.keyword10,
+                }}
+            ).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+    deleteEssay:(qId)=>{
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection('essays').deleteOne({'_id':ObjectId(qId)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
 }

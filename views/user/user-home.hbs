@@ -1,0 +1,16 @@
+<div class="container">
+    <div>
+        <h1>Exams Available</h1>
+    </div>
+    <div>
+        <ul>
+            {{#each exams}}
+            
+            <li>
+                <a href="#"><h2 onclick="examDetails('{{this._id}}')">{{this.name}}</h2> </a>
+                
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

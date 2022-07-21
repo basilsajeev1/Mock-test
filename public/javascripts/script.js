@@ -37,3 +37,28 @@ function deleteMcq(qId){
         }
     })
 }
+
+function addEssayPage(examId){
+    window.location.href="/admin/add-essay/"+examId
+}
+
+function editEssay(qId){
+    window.location.href="/admin/edit-essay"+qId
+}
+
+function deleteEssay(qId){
+    $.ajax({
+        url:'/admin/delete-essay'+qId,
+        method:'get',
+        success:(response)=>{
+            if(response.status){
+                alert('Deleted Essay successfully')
+                location.reload()
+            }
+        }
+    })
+}
+
+function examDetails(examId){
+    window.location.href="/exam-details"+examId
+}

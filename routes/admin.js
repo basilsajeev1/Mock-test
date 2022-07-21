@@ -117,6 +117,49 @@ router.get('/delete-mcq:qId',async(req,res)=>{
   })
 })
 
+router.get('/essays/:examId',async(req,res)=>{
+  examId=req.params.examId
+  await adminHelpers.getEssays(examId).then((essays)=>{
+    res.render('admin/essays',{examId, essays, admin:true, adminData,essayStatus:req.session.essayStatus}) 
+    req.session.essayStatus=false
+  })
+})
+
+router.get('/add-essay/:examId',async(req,res)=>{
+  examId=req.params.examId
+  res.render('admin/add-essay',{examId,admin:true, adminData}) 
+  
+})
+
+router.post('/add-essay',async(req,res)=>{
+  await adminHelpers.addEssay(req.body).then((examId)=>{
+    //console.log("reached back to router")
+    //console.log(examId)
+    req.session.essayStatus="Essay added successfully"
+    res.redirect('/admin/essays/'+examId)
+    
+  })
+})
+
+router.get('/edit-essay:qId',async(req,res)=>{
+  await adminHelpers.getEssayDetails(req.params.qId).then((essayData)=>{
+     res.render('admin/essay-details',{essayData, admin:true, adminData}) 
+  })
+})
+
+router.post('/edit-essay',async(req,res)=>{
+  await adminHelpers.updateEssay(req.body).then((response)=>{
+    req.session.essayStatus="Essay updated successfully"
+    res.redirect('/admin/essays/'+req.body.examId)
+  })
+})
+
+router.get('/delete-essay:qId',async(req,res)=>{
+  await adminHelpers.deleteEssay(req.params.qId).then((response)=>{
+    res.json({status:true})
+  })
+})
+
 router.get('/logout',(req,res)=>{
   req.session.destroy()
   res.redirect('/admin')

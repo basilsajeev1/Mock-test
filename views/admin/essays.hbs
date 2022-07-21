@@ -1,0 +1,31 @@
+<div class="container">
+<button class="btn btn-success" onclick="addEssayPage('{{examId}}')">Add Question</button>
+ {{#if essayStatus}}
+  <p class="alert alert-success">{{essayStatus}}</p>
+  {{/if}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Question</th>
+      <th scope="col">Keywords</th>
+      <th scope="col">Options</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each essays}}
+    <tr>      
+      <td>{{this.question}}</td>
+      <td>{{this.keyword1}}, {{this.keyword2}}, {{this.keyword3}}, {{this.keyword4}}, {{this.keyword5}}, {{this.keyword6}}, {{this.keyword7}}, {{this.keyword8}}, {{this.keyword9}}, {{this.keyword10}}</td>
+     
+      <td><button class="btn btn-link" onclick="editEssay('{{this._id}}')">Edit </button>
+      <button class="btn btn-danger" onclick="deleteEssay('{{this._id}}')">Delete</button>
+      </td>
+      
+
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+</div>
