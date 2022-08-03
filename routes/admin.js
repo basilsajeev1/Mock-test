@@ -160,6 +160,14 @@ router.get('/delete-essay:qId',async(req,res)=>{
   })
 })
 
+router.get('/users',async(req,res)=>{
+  await adminHelpers.getUserDetails().then((users)=>{
+    //console.log(exams)
+    res.render('admin/users',{admin:true,users, adminData})
+  })
+  
+})
+
 router.get('/logout',(req,res)=>{
   req.session.destroy()
   res.redirect('/admin')

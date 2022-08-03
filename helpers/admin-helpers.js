@@ -82,11 +82,12 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             await db.get().collection('mcqs').updateOne({'_id':ObjectId(mcqDetails.id)},
                 {$set:{
-                    question:mcqDetails.question,
-                    answer: mcqDetails.answer,
+                    question:mcqDetails.question,                    
                     option1: mcqDetails.option1,
                     option2: mcqDetails.option2,
                     option3: mcqDetails.option3,
+                    option4: mcqDetails.option4,
+                    answer: mcqDetails.answer,
                 }}
             ).then((response)=>{
                 resolve(response)
@@ -150,6 +151,12 @@ module.exports = {
             await db.get().collection('essays').deleteOne({'_id':ObjectId(qId)}).then((response)=>{
                 resolve(response)
             })
+        })
+    },
+    getUserDetails:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let users= await db.get().collection('users').find().toArray()
+            resolve(users)
         })
     },
 }

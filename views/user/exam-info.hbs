@@ -1,0 +1,7 @@
+<div class="container">
+    <h3>Exam Name: {{examData.name}}</h3>
+    <h3>Total Score: {{examData.score}}</h3>
+    <h3>Number of Questions: {{examData.numberofquestions}}</h3>
+    <h3>Time: {{examData.time}} minutes</h3>
+    <input type="button" class="btn btn-success" value="Start Exam" onclick="startExam('{{examData._id}}')">
+</div>

@@ -45,6 +45,27 @@ router.post('/register',async(req,res)=>{
   })
 })
 
+router.get('/exam-info:examId',async(req,res)=>{
+  await userHelpers.getExamData(req.params.examId).then((examData)=>{
+    res.render('user/exam-info',{examData, userData})
+  })
+})
+
+router.get('/exam:examId',async(req,res)=>{
+   await userHelpers.getMcqs(req.params.examId).then((mcqs)=>{
+     exam=req.params.examId
+     res.render('user/exam',{mcqs, exam, userData})
+   })
+})
+
+router.post('/exam',async(req,res)=>{
+  
+    //console.log(req.body)
+    await userHelpers.calculateScore(req.body).then((score)=>{
+        res.render('user/result',{score, userData})
+    })
+})
+
 router.get('/logout',(req,res)=>{
   req.session.destroy()
   res.redirect('/')

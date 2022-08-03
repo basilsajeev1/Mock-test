@@ -7,10 +7,12 @@
   <thead>
     <tr>
       <th scope="col">Question</th>
-      <th scope="col">Answer</th>
+      
       <th scope="col">Option 1</th>
       <th scope="col">Option 2</th>
       <th scope="col">Option 3</th>
+      <th scope="col">Option 4</th>
+      <th scope="col">Answer</th>
       <th scope="col">Options</th>
 
     </tr>
@@ -19,10 +21,12 @@
     {{#each mcqs}}
     <tr>      
       <td>{{this.question}}</td>
-      <td>{{this.answer}}</td>
+      
       <td>{{this.option1}}</td>
       <td>{{this.option2}}</td>
       <td>{{this.option3}}</td>
+      <td>{{this.option4}}</td>
+      <td>{{this.answer}}</td>
       <td><button class="btn btn-link" onclick="editMcq('{{this._id}}')">Edit</button>
       <button class="btn btn-danger" onclick="deleteMcq('{{this._id}}')">Delete</button>
       </td>

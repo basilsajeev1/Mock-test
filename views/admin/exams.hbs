@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th scope="col">Exam Name</th>
+      <th scope="col">Total Score</th>
       <th scope="col">Number of Questions</th>
       <th scope="col">Time</th>
       <th scope="col">Options</th>
@@ -16,6 +17,7 @@
     {{#each exams}}
     <tr>      
       <td>{{this.name}}</td>
+      <td>{{this.score}}</td>
       <td>{{this.numberofquestions}}</td>
       <td>{{this.time}}</td>
       <td><button class="btn btn-link" onclick="viewQuestions('{{this._id}}')">View Questions</button>

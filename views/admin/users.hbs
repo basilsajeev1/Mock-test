@@ -1,0 +1,23 @@
+<div class="container">
+    
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>      
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>  
+
+    </tr>
+    {{/each}}
+    
+  </tbody>
+</table>
+</div>

@@ -60,5 +60,25 @@ function deleteEssay(qId){
 }
 
 function examDetails(examId){
-    window.location.href="/exam-details"+examId
+    window.location.href="/exam-info"+examId
+}
+
+function startExam(examId){
+    window.location.href="/exam"+examId
+}
+
+function submitExam(mcqs){
+   mcqs.forEach(calculateScore);
+
+   function calculateScore(question){
+    /*let score=0
+    let optionChecked= $('input[type="radio"][name="\'question._id\'"]:checked').val()
+     if(optionChecked===question.answer){
+        score++
+     }else{
+        score=score-0.5
+     }
+   }*/
+   console.log(question)
+   }
 }

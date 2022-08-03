@@ -49,4 +49,41 @@ module.exports={
             })
         }) 
     },
+    getExamData:(examId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let exam= await db.get().collection('exams').findOne({'_id':ObjectId(examId)})
+            resolve(exam)
+        })
+    },
+    getMcqs:(exam)=>{
+        return new Promise(async(resolve,reject)=>{
+            mcqs=await db.get().collection('mcqs').find({'examId':exam}).toArray()
+            //console.log(mcqs)
+            resolve(mcqs)
+        })
+
+    },
+    calculateScore:(answerData)=>{
+        return new Promise(async(resolve,reject)=>{
+            mcqs=await db.get().collection('mcqs').find({'examId':exam}).toArray()
+            let score=0
+            //console.log(answerData)
+            mcqs.forEach(function myFunction(question){
+                //console.log(question.answer)
+                id=question._id.toString().replace(/ObjectId\("(.*)"\)/, "$1")
+                //console.log(id)
+                //console.log(answerData[id])
+                if(question.answer===answerData[id]){
+                    score++
+                }
+                
+            }
+            )
+                          
+            
+            //console.log(score)
+           //console.log(answerData)
+           resolve(score)
+        })
+    }
 }
