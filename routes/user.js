@@ -3,6 +3,8 @@ const async = require('hbs/lib/async');
 const userHelpers = require('../helpers/user-helpers');
 var router = express.Router();
 var db = require('../config/connection')
+const { ObjectId } = require('mongodb')
+var objectId = require('mongodb').ObjectId
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -47,14 +49,17 @@ router.post('/register',async(req,res)=>{
 
 router.get('/exam-info:examId',async(req,res)=>{
   await userHelpers.getExamData(req.params.examId).then((examData)=>{
+    time= examData.time
     res.render('user/exam-info',{examData, userData})
   })
 })
 
 router.get('/exam:examId',async(req,res)=>{
+   
    await userHelpers.getMcqs(req.params.examId).then((mcqs)=>{
      exam=req.params.examId
-     res.render('user/exam',{mcqs, exam, userData})
+     res.render('user/exam',{mcqs, exam, userData, time})
+     
    })
 })
 
@@ -62,8 +67,17 @@ router.post('/exam',async(req,res)=>{
   
     //console.log(req.body)
     await userHelpers.calculateScore(req.body).then((score)=>{
+        //exam="ObjectId('"+exam+"')"
+        exam=ObjectId(exam)
+        userHelpers.saveScore(score,userData._id, exam)
         res.render('user/result',{score, userData})
     })
+})
+
+router.get('/scores',async(req,res)=>{
+  await userHelpers.getScores(userData._id).then((scores)=>{
+     res.render('user/scores',{scores, userData})
+  })
 })
 
 router.get('/logout',(req,res)=>{

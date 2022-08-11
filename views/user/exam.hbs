@@ -1,5 +1,12 @@
+<body onload="startTimer('{{time}}')">
 <div class="container">
-    <form action="/exam" method="post">
+    <section class="timer">
+    
+        <h5 id="countdown">--:--</h5>
+    
+    </section>
+    <br>
+    <form id="examForm" action="/exam" method="post">
         {{#each mcqs}}
         <table class="table">
             <tr>
@@ -27,7 +34,9 @@
         </table>
         {{/each}}
         <input type="hidden" name="exam" value="{{exam}}">
-        <input class="btn btn-success float-right" type="submit" onclick="submitExam('{{mcqs}}')" value="Finish Exam">
+        <input class="btn btn-success float-right" type="submit" value="Finish Exam">
     </form>
 
 </div>
+
+</body>

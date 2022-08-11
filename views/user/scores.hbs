@@ -1,0 +1,23 @@
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date and Time</th>
+      <th scope="col">Exam Name</th>
+      <th scope="col">Score</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each scores}}
+    <tr>
+      <th>{{this.dateTime}}</th>
+      <td>{{this.exam}}</td>
+      <td>{{this.score}}</td>
+    </tr>
+    {{/each}}
+    
+    
+  </tbody>
+</table>
+</div>

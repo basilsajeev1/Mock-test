@@ -1,4 +1,5 @@
 
+
 function viewQuestions(examId){
     
     window.location.href="/admin/view-questions/"+examId
@@ -67,18 +68,33 @@ function startExam(examId){
     window.location.href="/exam"+examId
 }
 
-function submitExam(mcqs){
-   mcqs.forEach(calculateScore);
 
-   function calculateScore(question){
-    /*let score=0
-    let optionChecked= $('input[type="radio"][name="\'question._id\'"]:checked').val()
-     if(optionChecked===question.answer){
-        score++
-     }else{
-        score=score-0.5
-     }
-   }*/
-   console.log(question)
-   }
+function startTimer(time){  
+    let totalTime= time*60   
+    const countdownEl= document.getElementById('countdown')
+    setInterval(updateCountdown,1000)
+
+              
+    function updateCountdown()
+        {
+            
+            
+            let minutes=Math.floor(totalTime/60);
+            let seconds = totalTime % 60;
+            seconds=seconds < 10 ? '0' +seconds : seconds;
+            if(minutes==0 && seconds==0)
+            {
+                clearInterval()
+                submitForm()
+            }else
+            {
+                countdownEl.innerHTML = minutes +":"+ seconds
+                totalTime--
+            }
+            
+        }
+
+        function submitForm(){
+            document.getElementById('examForm').submit()
+        }
 }
